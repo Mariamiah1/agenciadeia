@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CogniVerse - Agentes de IA Personalizados</title>
+    <style>
+        :root {
+            --primary-color: #3a0ca3;
+            --secondary-color: #4cc9f0;
+            --background-color: #f8f9fa;
+            --text-color: #443e3e;
+            --accent-color: #7209b7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .active {
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #3ab2dc;
+        }
+        
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .about {
+            padding: 80px 0;
+            background-color: #f1f1f1;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        .pricing {
+            padding: 80px 0;
+        }
+        
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .plan {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .plan:hover {
+            transform: scale(1.03);
+        }
+        
+        .plan-highlight {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+        }
+        
+        .plan-highlight .price {
+            color: white;
+        }
+        
+        .plan-highlight .btn {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        .plan h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        
+        .features-list {
+            margin-bottom: 30px;
+            list-style: none;
+        }
+        
+        .features-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .contact {
+            padding: 80px 0;
+            background-color: #f1f1f1;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .footer-links ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-left: 20px;
+        }
+        
+        .footer-links ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                margin-top: 20px;
+            }
+            
+            .footer-links ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Cogni<span>Verse</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="sobrenos.html">Sobre Nós</a></li>
+                    <li><a href="planos.html">Planos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="depoimentodeclientes.html">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Transforme seu negócio com Agentes de IA personalizados</h1>
+            <p>Soluções inteligentes para automatizar processos, melhorar a produtividade e revolucionar a experiência do cliente.</p>
+            <a href="planos.html" class="btn">Conheça Nossos Planos</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="features-container">
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Agentes de IA Personalizados</h3>
+                    <p>Desenvolvemos agentes de inteligência artificial adaptados às necessidades específicas do seu negócio, automatizando tarefas e melhorando a eficiência.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💬</div>
+                    <h3>Chatbots Inteligentes</h3>
+                    <p>Chatbots avançados que aprendem com cada interação, proporcionando atendimento ao cliente 24/7 e resolvendo problemas em tempo real.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Análise de Dados</h3>
+                    <p>Transformamos dados em insights valiosos, ajudando sua empresa a tomar decisões estratégicas baseadas em informações concretas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container about-content">
+            <div class="about-image">
+                <img src=" C:\Users\miaro\Downloads\d2b754_0cb084ab83e64b199938fd7aca6c3704~mv2.webp" alt="Equipe CogniVerse">
+            </div>
+            <div class="about-text">
+                <h2>Sobre a CogniVerse</h2>
+                <p>Somos uma agência especializada em soluções de inteligência artificial, focada em criar agentes de IA personalizados que atendam às necessidades específicas de cada cliente.</p>
+                <p>Nossa missão é democratizar o acesso à tecnologia de ponta, ajudando empresas de todos os tamanhos a se beneficiarem do poder da IA para impulsionar seus negócios.</p>
+                <p>Com uma equipe multidisciplinar de especialistas em IA, desenvolvimento de software e negócios, oferecemos soluções completas que realmente fazem diferença no dia a dia das empresas.</p>
+                <a href="sobre.html" class="btn">Saiba Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Nossos Planos</h2>
+            <div class="plans">
+                <div class="plan">
+                    <h3>Básico</h3>
+                    <div class="price">R$ 150<span>/mês</span></div>
+                    <ul class="features-list">
+                        <li>1 Agente de IA</li>
+                        <li>Atendimento por email</li>
+                        <li>Atualizações mensais</li>
+                        <li>Suporte básico</li>
+                    </ul>
+                    <a href="contato.html" class="btn">Contratar</a>
+                </div>
+                <div class="plan plan-highlight">
+                    <h3>Profissional</h3>
+                    <div class="price">R$ 300<span>/mês</span></div>
+                    <ul class="features-list">
+                        <li>3 Agentes de IA</li>
+                        <li>Atendimento prioritário</li>
+                        <li>Atualizações semanais</li>
+                        <li>Suporte 24/7</li>
+                        <li>Consultoria mensal</li>
+                    </ul>
+                    <a href="contato.html" class="btn">Contratar</a>
+                </div>
+                <div class="plan">
+                    <h3>Empresarial</h3>
+                    <div class="price">R$ 600<span>/mês</span></div>
+                    <ul class="features-list">
+                        <li>5+ Agentes de IA</li>
+                        <li>Gestor de conta dedicado</li>
+                        <li>Atualizações personalizadas</li>
+                        <li>Suporte 24/7 prioritário</li>
+                        <li>Consultoria semanal</li>
+                        <li>Integração com sistemas</li>
+                    </ul>
+                    <a href="contato.html" class="btn">Contratar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="contact-details">
+                        <p><span class="contact-icon">📱</span> WhatsApp: +55 31 99266-9102</p>
+                        <p><span class="contact-icon">✉️</span> Email: cogniverseaiagentesdeia@gmail.com</p>
+                        <p><span class="contact-icon">🕒</span> Horário: Segunda a Sexta, 9h às 18h</p>
+                    </div>
+                    <h3>Nos encontre nas redes sociais</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank">Instagram</a> |
+                        <a href="#" target="_blank">LinkedIn</a> |
+                        <a href="#" target="_blank">Facebook</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone/WhatsApp</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Cogni<span>Verse</span></div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="planos.html">Planos</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CogniVerse. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
